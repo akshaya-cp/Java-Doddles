@@ -1,22 +1,34 @@
 package Logger;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logger {
-  //Static variable to hold one single instance of  Logger
-  private static Logger instance;  
-  
-  //Formatter for timestamp
+  //(Stage 3) code
+  private static Logger instance;
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+  private static final String LOG_FILE = "SmartLoggerTaskManager/data/logs.txt";
 
-  // Private Constructor --> so no one can create Logger objects using new Logger()
+
   private Logger(){
-    System.out.println("Logger Initialized Yeaah!!");
+    // Ensuring 'data folder exists for log'
+    File folder = new File("SmartLoggerTaskManager/data");
+    if(!folder.exists()){
+      folder.mkdirs();
+      System.out.println(" 'data' folder created for logs.");
+    }
+    System.out.println(" Logger Initialized ");
+
+    //addind heading to separate iterations of the logs
+    addLogHeading();
   }
 
-  // public method to create single Logger instance
-  // Synchronised used to make it thread-safe(in case of multiple thread accessing it at the same time)
+  // Getting signleton instance
   public static synchronized Logger getInstance(){
     if(instance == null){
       instance = new Logger();
@@ -24,13 +36,40 @@ public class Logger {
     return instance;
   }
 
-  // Log method to print log messages with a timestamp and a level --> info, warning, error
+  //Add heading at the start of every log collection
+  private void addLogHeading(){
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE,true))){
+      writer.write("\n-------LOG START: "+ LocalDateTime.now().format(formatter) + " ------");
+      writer.newLine();
+    } catch (IOException e){
+      System.err.println(" Error writing log heading: " + e.getMessage());
+    }
+    System.out.println(" New log section started!");
+  }
+
+  // Add end line after profgram finishes
+  public void addLogEnd() {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE, true))){
+      writer.write("----- LOG END -----");
+      writer.newLine();
+    } catch(IOException e){
+      System.err.println(" Error writing log end: "+ e.getMessage());
+    }
+  }
+
+  // Log method : writes to console + file
   public void log(String level, String message){
     String timestamp = LocalDateTime.now().format(formatter);
-    System.out.println("[" + timestamp + "] [" + level.toUpperCase() + "]" + message); 
-  }
-  public void log(String level, int message){
-    String timestamp = LocalDateTime.now().format(formatter);
-    System.out.println("[" + timestamp + "] [" + level.toUpperCase() + "]" + message); 
+    String logEntry = "[" + timestamp + "] [" + level.toUpperCase() + "] " + message;
+
+    System.out.println(logEntry);
+
+    // Append log entry to logs.txt
+    try(BufferedWriter writer = new BufferedWriter(new  FileWriter(LOG_FILE, true))){
+      writer.write(logEntry);
+      writer.newLine();   // Move to next line
+    } catch (IOException e){
+      System.err.println("Error writing log to file: " + e.getMessage());
+    }
   }
 }

@@ -2,6 +2,13 @@ package services;
 
 import Logger.Logger;
 import task.Task;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class TaskManager {
@@ -10,18 +17,27 @@ public class TaskManager {
   // Shared logger to log all actions
   private Logger logger = Logger.getInstance();
 
+  private static final String TASK_FILE = "SmartLoggerTaskManager/data/tasks.txt";
+
   // Method to add a new task
   public void addTask(Task task){
     tasks.add(task);
     logger.log("INFO", "Task added: " + task.getDescription() + "(Assigned to: " + task.getAssignedTo() + ")");
+    saveTaskToFile();
   }
 
   //complete a existing task
   public void completeTask(int index){
     if(index < tasks.size()){
       Task task = tasks.get(index);
-      task.completeTask();
-      logger.log("SUCCESS","Task Completed: " + task.getDescription());
+      if(!task.getStatus().equals("Completed")){
+        task.completeTask();
+        logger.log("SUCCESS","Task Completed: " + task.getDescription());
+        saveTaskToFile();
+      }else{
+        logger.log("WARNING","Task already completed: " + task.getDescription());
+      }
+      
     }
     else{
       logger.log("ERROR", "Inavalid task index:" + index);
@@ -37,11 +53,45 @@ public class TaskManager {
     }
   }
 
+  //Save Task to File
+  private void saveTaskToFile(){
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(TASK_FILE))){
+      for (Task t : tasks){
+        // Format : description;assignedTo;status
+        writer.write(t.getDescription() + ";" + t.getAssignedTo() + ";" + t.getStatus());
+        writer.newLine();
+      }
+      logger.log("INFO", "Tasks saved to file");
+    }catch (IOException e){
+      logger.log("ERROR", "Failed to save tasks:" + e.getMessage());
+    }
+  }
+
+  public void loadTasksFromFile() {
+    tasks.clear();
+    try (BufferedReader reader = new BufferedReader(new FileReader(TASK_FILE))){
+      String line;
+      while((line = reader.readLine()) != null){
+        String[] parts = line.split(";");
+        if(parts.length == 3){
+          Task task = new Task(parts[0], parts[1]);
+          if(parts[2].equals("Completed")) task.completeTask();
+          tasks.add(task);
+        }
+      }
+      logger.log("INFO", "Tasks loaded from file.");
+    }catch(FileNotFoundException e){
+      logger.log("WARNING", "No tasks file found (first run).");
+    }catch (IOException e){
+      logger.log("ERROR", "Error loading tasks: " + e.getMessage());
+    }
+  }
+
   //Remove a task
   public void removeTask(int index){
     Task t = tasks.get(index);
     tasks.remove(index);
-    logger.log("INFO","Removed task : " + t.getDescription() + ", Assigned to : " + t.getAssignedTo() + ", Status : "+ t.getStatus());
+    logger.log("INFO","Removed task : " + t.getDescription() + ", Assigned to : " + t.getAssignedTo() + ", Status :  "+ t.getStatus());
 
   }
 }

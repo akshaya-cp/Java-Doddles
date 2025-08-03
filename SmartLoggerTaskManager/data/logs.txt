@@ -1,0 +1,26 @@
+
+-------LOG START: 2025-08-04 04:26:54 ------
+[2025-08-04 04:26:54] [INFO]  Application Started Yeah :)
+[2025-08-04 04:26:54] [INFO] Task added: Complete JAVA OOPS exercise(Assigned to: Akshaya)
+[2025-08-04 04:26:54] [INFO] Tasks saved to file
+[2025-08-04 04:26:54] [INFO] Task added: Prepare yourself for JAVA based interview(Assigned to: Akshaya)
+[2025-08-04 04:26:54] [INFO] Tasks saved to file
+[2025-08-04 04:26:54] [INFO] Displaying all tasks:
+[2025-08-04 04:26:54] [SUCCESS] Task Completed: Complete JAVA OOPS exercise
+[2025-08-04 04:26:54] [INFO] Tasks saved to file
+[2025-08-04 04:26:54] [INFO] Displaying all tasks:
+[2025-08-04 04:26:54] [INFO]  Application stopped :(
+----- LOG END -----
+
+-------LOG START: 2025-08-04 04:26:57 ------
+[2025-08-04 04:26:57] [INFO]  Application Started Yeah :)
+[2025-08-04 04:26:57] [INFO] Task added: Complete JAVA OOPS exercise(Assigned to: Akshaya)
+[2025-08-04 04:26:57] [INFO] Tasks saved to file
+[2025-08-04 04:26:57] [INFO] Task added: Prepare yourself for JAVA based interview(Assigned to: Akshaya)
+[2025-08-04 04:26:57] [INFO] Tasks saved to file
+[2025-08-04 04:26:57] [INFO] Displaying all tasks:
+[2025-08-04 04:26:57] [SUCCESS] Task Completed: Complete JAVA OOPS exercise
+[2025-08-04 04:26:57] [INFO] Tasks saved to file
+[2025-08-04 04:26:57] [INFO] Displaying all tasks:
+[2025-08-04 04:26:57] [INFO]  Application stopped :(
+----- LOG END -----
