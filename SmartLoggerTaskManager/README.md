@@ -35,3 +35,17 @@ Built a Task Manager to:
 
 ## 📸 Sample Output
 ![Logger Output](docs/Task-Manager.png)
+
+
+## 🚀 **What’s New in Stage 3?**
+✅ Persistent storage using **File I/O**  
+✅ Tasks saved in `tasks.txt` and loaded automatically on restart  
+✅ Logs written to `logs.txt` with **run-wise headings** (separates logs per application run)  
+✅ **Clean data folder** (`/data`) for storing logs and tasks  
+✅ Beginner-friendly **minimalistic changes** to learn step-by-step
+
+---
+
+## 📸 Sample Output
+![Logger Output](docs/Stage-3(1).png)
+![Logger Output](docs/Stage-3(2).png)
