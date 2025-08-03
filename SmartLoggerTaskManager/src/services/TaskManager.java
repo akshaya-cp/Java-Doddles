@@ -36,4 +36,12 @@ public class TaskManager {
       System.out.println((i+1) + ". " + t.getDescription() + "| Assigned to: " + t.getAssignedTo() + " | Status: " + t.getStatus());
     }
   }
+
+  //Remove a task
+  public void removeTask(int index){
+    Task t = tasks.get(index);
+    tasks.remove(index);
+    logger.log("INFO","Removed task : " + t.getDescription() + ", Assigned to : " + t.getAssignedTo() + ", Status : "+ t.getStatus());
+
+  }
 }

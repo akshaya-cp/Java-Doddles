@@ -39,6 +39,9 @@ public class Main {
     // Complete first task
     taskManager.completeTask(0);
 
+    // Remove a task
+    taskManager.removeTask(0);
+
     // Show Tasks again for verification
     taskManager.showTasks();
 
