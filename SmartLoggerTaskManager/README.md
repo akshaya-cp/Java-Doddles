@@ -19,3 +19,19 @@ I built this **Logger Singleton** to:
 
 ## 📸 Sample Output
 ![Logger Output](docs/logger-output.png)
+
+
+---
+
+## 🔥 Stage 2: Encapsulated Task Manager
+Built a Task Manager to:
+- Learn **Encapsulation** (private fields + getters/setters)
+- Manage tasks using **ArrayList**
+- Log every action using **Logger Singleton**
+
+### Key Files:
+- `Task.java` → Encapsulated task model
+- `TaskManager.java` → Adds, completes, and displays tasks with logs
+
+## 📸 Sample Output
+![Logger Output](docs/Task-Manager.png)

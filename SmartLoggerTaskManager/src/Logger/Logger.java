@@ -29,4 +29,8 @@ public class Logger {
     String timestamp = LocalDateTime.now().format(formatter);
     System.out.println("[" + timestamp + "] [" + level.toUpperCase() + "]" + message); 
   }
+  public void log(String level, int message){
+    String timestamp = LocalDateTime.now().format(formatter);
+    System.out.println("[" + timestamp + "] [" + level.toUpperCase() + "]" + message); 
+  }
 }
