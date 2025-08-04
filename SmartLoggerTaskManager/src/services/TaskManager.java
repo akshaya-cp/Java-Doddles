@@ -2,6 +2,8 @@ package services;
 
 import Logger.Logger;
 import task.Task;
+import task.TaskNotFoundException;
+import task.TaskStatus;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,10 +29,10 @@ public class TaskManager {
   }
 
   //complete a existing task
-  public void completeTask(int index){
+  public void completeTask(int index) throws TaskNotFoundException{
     if(index < tasks.size()){
       Task task = tasks.get(index);
-      if(!task.getStatus().equals("Completed")){
+      if(task.getStatus() != TaskStatus.Completed){
         task.completeTask();
         logger.log("SUCCESS","Task Completed: " + task.getDescription());
         saveTaskToFile();
@@ -40,7 +42,7 @@ public class TaskManager {
       
     }
     else{
-      logger.log("ERROR", "Inavalid task index:" + index);
+      throw new TaskNotFoundException("Task index " + index + " not found!");
     }
   }
 
@@ -93,5 +95,9 @@ public class TaskManager {
     tasks.remove(index);
     logger.log("INFO","Removed task : " + t.getDescription() + ", Assigned to : " + t.getAssignedTo() + ", Status :  "+ t.getStatus());
 
+  }
+
+  public List<Task> getTasks() {
+    return tasks; // For filtering in CLI
   }
 }

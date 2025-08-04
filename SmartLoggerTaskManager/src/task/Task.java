@@ -6,13 +6,13 @@ public class Task {
   // Who will handle it?
   private String assignedTo;
   //Current status : Pending or Completed
-  private String status;
+  private TaskStatus status;
 
   // Constructor to initialize task
   public Task(String description, String assignedTo){
     this.description = description;
     this.assignedTo = assignedTo;
-    this.status = "Pending";
+    this.status = TaskStatus.Pending;
   }
 
   // public getters (with read only access)
@@ -22,12 +22,12 @@ public class Task {
   public String getAssignedTo(){
     return assignedTo;
   }
-  public String getStatus(){
+  public TaskStatus getStatus(){
     return status;
   }
 
   //public method to change state safely
   public void completeTask(){
-    this.status = "Completed";
+    this.status = TaskStatus.Completed;
   }
 }

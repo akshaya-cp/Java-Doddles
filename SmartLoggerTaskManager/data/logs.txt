@@ -24,3 +24,13 @@
 [2025-08-04 04:26:57] [INFO] Displaying all tasks:
 [2025-08-04 04:26:57] [INFO]  Application stopped :(
 ----- LOG END -----
+
+-------LOG START: 2025-08-04 19:56:00 ------
+[2025-08-04 19:56:00] [INFO] Tasks loaded from file.
+[2025-08-04 19:56:00] [INFO]  ---- CLI Started ---- 
+[2025-08-04 19:56:25] [INFO] Task added: Complete JAVA OOPS exercise(Assigned to: Akshaya)
+[2025-08-04 19:56:25] [INFO] Tasks saved to file
+[2025-08-04 19:56:46] [INFO] Displaying all tasks:
+[2025-08-04 19:57:02] [WARNING] Task already completed: Complete JAVA OOPS exercise
+[2025-08-04 22:39:44] [INFO] Exiting CLI...
+----- LOG END -----
